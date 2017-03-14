@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminUserName": {
+      "value": "Test1234"
+    },
+    "certificateThumbprint": {
+      "value": "E3BE5BD7831EB349A3029EDFA8E98CDAA8829E18"
+    },
+    "sourceVaultResourceId": {
+      "value": "/subscriptions/a1e94c46-5bce-4161-a1bf-c8a784f2b489/resourceGroups/sftest_keys_rg/providers/Microsoft.KeyVault/vaults/sftestkeys"
+    },
+    "certificateUrlValue": {
+      "value": "https://sftestkeys.vault.azure.net:443/secrets/sftestkey/a89f689db54343139ee300efed7064fd"
+    },
+    "adminPassword": {
+      "value": "SfTest1234"
+    }
+  }
+}
