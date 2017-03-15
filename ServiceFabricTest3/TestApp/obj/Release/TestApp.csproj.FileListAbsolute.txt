@@ -1,0 +1,5 @@
+C:\Git\SFTest\ServiceFabricTest3\TestApp\bin\Release\TestApp.exe.config
+C:\Git\SFTest\ServiceFabricTest3\TestApp\bin\Release\TestApp.exe
+C:\Git\SFTest\ServiceFabricTest3\TestApp\bin\Release\TestApp.pdb
+C:\Git\SFTest\ServiceFabricTest3\TestApp\obj\Release\TestApp.exe
+C:\Git\SFTest\ServiceFabricTest3\TestApp\obj\Release\TestApp.pdb

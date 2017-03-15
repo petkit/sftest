@@ -4,3 +4,9 @@ C:\code\ServiceFabricTest3\TestApp\bin\Debug\TestApp.pdb
 C:\code\ServiceFabricTest3\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
 C:\code\ServiceFabricTest3\TestApp\obj\Debug\TestApp.exe
 C:\code\ServiceFabricTest3\TestApp\obj\Debug\TestApp.pdb
+C:\Git\SFTest\ServiceFabricTest3\TestApp\bin\Debug\TestApp.exe.config
+C:\Git\SFTest\ServiceFabricTest3\TestApp\bin\Debug\TestApp.exe
+C:\Git\SFTest\ServiceFabricTest3\TestApp\bin\Debug\TestApp.pdb
+C:\Git\SFTest\ServiceFabricTest3\TestApp\obj\Debug\TestApp.csprojResolveAssemblyReference.cache
+C:\Git\SFTest\ServiceFabricTest3\TestApp\obj\Debug\TestApp.exe
+C:\Git\SFTest\ServiceFabricTest3\TestApp\obj\Debug\TestApp.pdb

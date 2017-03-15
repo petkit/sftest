@@ -1,0 +1,17 @@
+C:\Git\SFTest\ServiceFabricTest3\TestStateless\bin\x64\Release\TestStateless.exe.config
+C:\Git\SFTest\ServiceFabricTest3\TestStateless\bin\x64\Release\TestStateless.exe
+C:\Git\SFTest\ServiceFabricTest3\TestStateless\bin\x64\Release\TestStateless.pdb
+C:\Git\SFTest\ServiceFabricTest3\TestStateless\bin\x64\Release\Microsoft.ServiceFabric.Data.dll
+C:\Git\SFTest\ServiceFabricTest3\TestStateless\bin\x64\Release\Microsoft.ServiceFabric.Data.Interfaces.dll
+C:\Git\SFTest\ServiceFabricTest3\TestStateless\bin\x64\Release\Microsoft.ServiceFabric.Internal.dll
+C:\Git\SFTest\ServiceFabricTest3\TestStateless\bin\x64\Release\Microsoft.ServiceFabric.Internal.Strings.dll
+C:\Git\SFTest\ServiceFabricTest3\TestStateless\bin\x64\Release\Microsoft.ServiceFabric.Services.dll
+C:\Git\SFTest\ServiceFabricTest3\TestStateless\bin\x64\Release\ServiceFabricServiceModel.dll
+C:\Git\SFTest\ServiceFabricTest3\TestStateless\bin\x64\Release\System.Fabric.dll
+C:\Git\SFTest\ServiceFabricTest3\TestStateless\bin\x64\Release\System.Fabric.Strings.dll
+C:\Git\SFTest\ServiceFabricTest3\TestStateless\bin\x64\Release\Microsoft.ServiceFabric.Data.xml
+C:\Git\SFTest\ServiceFabricTest3\TestStateless\bin\x64\Release\Microsoft.ServiceFabric.Data.Interfaces.xml
+C:\Git\SFTest\ServiceFabricTest3\TestStateless\bin\x64\Release\Microsoft.ServiceFabric.Services.xml
+C:\Git\SFTest\ServiceFabricTest3\TestStateless\bin\x64\Release\System.Fabric.xml
+C:\Git\SFTest\ServiceFabricTest3\TestStateless\obj\x64\Release\TestStateless.exe
+C:\Git\SFTest\ServiceFabricTest3\TestStateless\obj\x64\Release\TestStateless.pdb
