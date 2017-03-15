@@ -6,8 +6,15 @@ https://azure.microsoft.com/documentation/articles/service-fabric-cluster-securi
 
 KeyVaultRgName: sftest_keys_rg
 KeyVaultName: sftestkeys
-key thumbprint: BE4B689BF2939F7495FDA98A0AF9B43BD15ECCD0
 
 User: Test1234
 Password: SfTest1234
-CertDNSName: clusterzzcshmgfcdjcu.westeurope.cloudapp.azure.com
+
+Name  : CertificateThumbprint
+Value : B333A014726CBB34A6D75D579332B129EE371615
+
+Name  : SourceVault
+Value : /subscriptions/a1e94c46-5bce-4161-a1bf-c8a784f2b489/resourceGroups/sftest_keys_rg/providers/Microsoft.KeyVault/vaults/sftestkeys
+
+Name  : CertificateURL
+Value : https://sftestkeys.vault.azure.net:443/secrets/sftestcert/90447bc98d7e4ffba65ce383d5fd488e
