@@ -30,3 +30,4 @@ C:\Git\SFTest\ServiceFabricTest3\TestWebApi\bin\x64\Release\System.Web.Http.xml
 C:\Git\SFTest\ServiceFabricTest3\TestWebApi\bin\x64\Release\System.Web.Http.Owin.xml
 C:\Git\SFTest\ServiceFabricTest3\TestWebApi\obj\x64\Release\TestWebApi.exe
 C:\Git\SFTest\ServiceFabricTest3\TestWebApi\obj\x64\Release\TestWebApi.pdb
+C:\Git\SFTest\ServiceFabricTest3\TestWebApi\obj\x64\Release\TestWebApi.csprojResolveAssemblyReference.cache
