@@ -350,6 +350,7 @@
                   "settings": {
                     "clusterEndpoint": "[reference(variables('clusterName')).clusterEndpoint]",
                     "nodeTypeRef": "[variables('vmNodeType0Name')]",
+                    "dataPath": "D:\\\\SvcFab",
                     "certificate": {
                       "thumbprint": "[parameters('certificateThumbprint')]",
                       "x509StoreName": "[variables('certificateStoreValue')]"
