@@ -1,1 +1,0 @@
-C:\Git\SFTest\ServiceFabricTest3\ServiceFabricTest3\obj\x64\Release\ServiceFabricTest3.sfprojResolveAssemblyReference.cache
