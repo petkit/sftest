@@ -75,6 +75,12 @@
     },
     "nt0fabricHttpGatewayPort": {
       "value": 19080
+    },
+    "nt0fabricWebAPIPort": {
+      "value": 9060
+    },
+    "vmNodeType0Size": {
+      "value": "Standard_D2_v2"
     }
   }
 }

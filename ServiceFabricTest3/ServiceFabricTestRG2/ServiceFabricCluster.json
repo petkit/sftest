@@ -1,256 +1,261 @@
 {
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
     "contentVersion": "1.0.0.0",
-    "parameters": {
-        "clusterLocation": {
-            "type": "string",
-            "metadata": {
-                "description": "Location of the Cluster"
-            }
-        },
-        "clusterName": {
-            "type": "string",
-            "defaultValue": "Cluster",
-            "metadata": {
-                "description": "Name of your cluster - Between 3 and 23 characters. Letters and numbers only"
-            }
-        },
-        "nt0applicationStartPort": {
-            "type": "int",
-            "defaultValue": 20000
-        },
-        "nt0applicationEndPort": {
-            "type": "int",
-            "defaultValue": 30000
-        },
-        "nt0ephemeralStartPort": {
-            "type": "int",
-            "defaultValue": 49152
-        },
-        "nt0ephemeralEndPort": {
-            "type": "int",
-            "defaultValue": 65534
-        },
-        "nt0fabricTcpGatewayPort": {
-            "type": "int",
-            "defaultValue": 19000
-        },
-        "nt0fabricHttpGatewayPort": {
-            "type": "int",
-            "defaultValue": 19080
-        },
-        "subnet0Name": {
-            "type": "string",
-            "defaultValue": "Subnet-0"
-        },
-        "subnet0Prefix": {
-            "type": "string",
-            "defaultValue": "10.0.0.0/24"
-        },
-        "computeLocation": {
-            "type": "string"
-        },
-        "vmStorageAccountName": {
-            "type": "string"
-        },
-        "publicIPAddressName": {
-            "type": "string",
-            "defaultValue": "PublicIP-VM"
-        },
-        "publicIPAddressType": {
-            "type": "string",
-            "allowedValues": [
-                "Dynamic"
-            ],
-            "defaultValue": "Dynamic"
-        },
-        "vmStorageAccountContainerName": {
-            "type": "string",
-            "defaultValue": "vhds"
-        },
-        "adminUserName": {
-            "type": "string",
-            "defaultValue": "testadm",
-            "metadata": {
-                "description": "Remote desktop user Id"
-            }
-        },
-        "adminPassword": {
-            "type": "securestring",
-            "metadata": {
-                "description": "Remote desktop user password. Must be a strong password"
-            }
-        },
-        "virtualNetworkName": {
-            "type": "string",
-            "defaultValue": "VNet"
-        },
-        "addressPrefix": {
-            "type": "string",
-            "defaultValue": "10.0.0.0/16"
-        },
-        "dnsName": {
-            "type": "string"
-        },
-        "nicName": {
-            "type": "string",
-            "defaultValue": "NIC"
-        },
-        "lbName": {
-            "type": "string",
-            "defaultValue": "LoadBalancer"
-        },
-        "lbIPName": {
-            "type": "string",
-            "defaultValue": "PublicIP-LB-FE"
-        },
-        "overProvision": {
-            "type": "string",
-            "defaultValue": "false"
-        },
-        "vmImagePublisher": {
-            "type": "string",
-            "defaultValue": "MicrosoftWindowsServer"
-        },
-        "vmImageOffer": {
-            "type": "string",
-            "defaultValue": "WindowsServer"
-        },
-        "vmImageSku": {
-            "type": "string",
-            "defaultValue": "2012-R2-Datacenter"
-        },
-        "vmImageVersion": {
-            "type": "string",
-            "defaultValue": "latest"
-        },
-        "clusterProtectionLevel": {
-            "type": "string",
-            "allowedValues": [
-                "None",
-                "Sign",
-                "EncryptAndSign"
-            ],
-            "defaultValue": "EncryptAndSign",
-            "metadata": {
-                "description": "Protection level.Three values are allowed - EncryptAndSign, Sign, None. It is best to keep the default of EncryptAndSign, unless you have a need not to"
-            }
-        },
-        "certificateStoreValue": {
-            "type": "string",
-            "allowedValues": [
-                "My"
-            ],
-            "defaultValue": "My",
-            "metadata": {
-                "description": "The store name where the cert will be deployed in the virtual machine"
-            }
-        },
-        "certificateThumbprint": {
-            "type": "string",
-            "metadata": {
-                "description": "Certificate Thumbprint"
-            }
-        },
-        "sourceVaultValue": {
-            "type": "string",
-            "metadata": {
-                "description": "Resource Id of the key vault, is should be in the format of /subscriptions/<Sub ID>/resourceGroups/<Resource group name>/providers/Microsoft.KeyVault/vaults/<vault name>"
-            }
-        },
-        "certificateUrlValue": {
-            "type": "string",
-            "metadata": {
-                "description": "Refers to the location URL in your key vault where the certificate was uploaded, it is should be in the format of https://<name of the vault>.vault.azure.net:443/secrets/<exact location>"
-            }
-        },
-        "storageAccountType": {
-            "type": "string",
-            "allowedValues": [
-                "Standard_LRS",
-                "Standard_GRS"
-            ],
-            "defaultValue": "Standard_LRS",
-            "metadata": {
-                "description": "Replication option for the VM image storage account"
-            }
-        },
-        "supportLogStorageAccountType": {
-            "type": "string",
-            "allowedValues": [
-                "Standard_LRS",
-                "Standard_GRS"
-            ],
-            "defaultValue": "Standard_LRS",
-            "metadata": {
-                "description": "Replication option for the support log storage account"
-            }
-        },
-        "supportLogStorageAccountName": {
-            "type": "string",
-            "defaultValue": "[toLower( concat('sflogs', uniqueString(resourceGroup().id),'2'))]",
-            "metadata": {
-                "description": "Name for the storage account that contains support logs from the cluster"
-            }
-        },
-        "applicationDiagnosticsStorageAccountType": {
-            "type": "string",
-            "allowedValues": [
-                "Standard_LRS",
-                "Standard_GRS"
-            ],
-            "defaultValue": "Standard_LRS",
-            "metadata": {
-                "description": "Replication option for the application diagnostics storage account"
-            }
-        },
-        "applicationDiagnosticsStorageAccountName": {
-            "type": "string",
-            "defaultValue": "[toLower(concat(uniqueString(resourceGroup().id), '3' ))]",
-            "metadata": {
-                "description": "Name for the storage account that contains application diagnostics data from the cluster"
-            }
-        },
-        "nt0InstanceCount": {
-            "type": "int",
-            "defaultValue": 3,
-            "metadata": {
-                "description": "Instance count for node type"
-            }
-        },
-        "vmNodeType0Name": {
-            "type": "string",
-            "defaultValue": "sftest",
-            "maxLength": 9
-        },
-        "vmNodeType0Size": {
-            "type": "string",
-            "defaultValue": "Standard_D1_v2"
-        }
+  "parameters": {
+    "clusterLocation": {
+      "type": "string",
+      "metadata": {
+        "description": "Location of the Cluster"
+      }
     },
-    "variables": {
-        "vmssApiVersion": "2016-03-30",
-        "lbApiVersion": "2015-06-15",
-        "vNetApiVersion": "2015-06-15",
-        "storageApiVersion": "2016-01-01",
-        "publicIPApiVersion": "2015-06-15",
-        "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',parameters('virtualNetworkName'))]",
-        "subnet0Ref": "[concat(variables('vnetID'),'/subnets/',parameters('subnet0Name'))]",
-        "lbID0": "[resourceId('Microsoft.Network/loadBalancers', concat('LB','-', parameters('clusterName'),'-',parameters('vmNodeType0Name')))]",
-        "lbIPConfig0": "[concat(variables('lbID0'),'/frontendIPConfigurations/LoadBalancerIPConfig')]",
-        "lbPoolID0": "[concat(variables('lbID0'),'/backendAddressPools/LoadBalancerBEAddressPool')]",
-        "lbProbeID0": "[concat(variables('lbID0'),'/probes/FabricGatewayProbe')]",
-        "lbHttpProbeID0": "[concat(variables('lbID0'),'/probes/FabricHttpGatewayProbe')]",
-        "lbNatPoolID0": "[concat(variables('lbID0'),'/inboundNatPools/LoadBalancerBEAddressNatPool')]",
-        "vmStorageAccountName0": "[toLower(concat(uniqueString(resourceGroup().id), '1', '0' ))]",
-        "uniqueStringArray0": [
-            "[concat(variables('vmStorageAccountName0'), '0')]",
-            "[concat(variables('vmStorageAccountName0'), '1')]",
-            "[concat(variables('vmStorageAccountName0'), '2')]",
-            "[concat(variables('vmStorageAccountName0'), '3')]",
-            "[concat(variables('vmStorageAccountName0'), '4')]"
-        ]
+    "clusterName": {
+      "type": "string",
+      "defaultValue": "Cluster",
+      "metadata": {
+        "description": "Name of your cluster - Between 3 and 23 characters. Letters and numbers only"
+      }
     },
+    "nt0applicationStartPort": {
+      "type": "int",
+      "defaultValue": 20000
+    },
+    "nt0applicationEndPort": {
+      "type": "int",
+      "defaultValue": 30000
+    },
+    "nt0ephemeralStartPort": {
+      "type": "int",
+      "defaultValue": 49152
+    },
+    "nt0ephemeralEndPort": {
+      "type": "int",
+      "defaultValue": 65534
+    },
+    "nt0fabricTcpGatewayPort": {
+      "type": "int",
+      "defaultValue": 19000
+    },
+    "nt0fabricHttpGatewayPort": {
+      "type": "int",
+      "defaultValue": 19080
+    },
+    "nt0fabricWebAPIPort": {
+      "type": "int",
+      "defaultValue": 9060
+    },
+    "subnet0Name": {
+      "type": "string",
+      "defaultValue": "Subnet-0"
+    },
+    "subnet0Prefix": {
+      "type": "string",
+      "defaultValue": "10.0.0.0/24"
+    },
+    "computeLocation": {
+      "type": "string"
+    },
+    "vmStorageAccountName": {
+      "type": "string"
+    },
+    "publicIPAddressName": {
+      "type": "string",
+      "defaultValue": "PublicIP-VM"
+    },
+    "publicIPAddressType": {
+      "type": "string",
+      "allowedValues": [
+        "Dynamic"
+      ],
+      "defaultValue": "Dynamic"
+    },
+    "vmStorageAccountContainerName": {
+      "type": "string",
+      "defaultValue": "vhds"
+    },
+    "adminUserName": {
+      "type": "string",
+      "defaultValue": "testadm",
+      "metadata": {
+        "description": "Remote desktop user Id"
+      }
+    },
+    "adminPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Remote desktop user password. Must be a strong password"
+      }
+    },
+    "virtualNetworkName": {
+      "type": "string",
+      "defaultValue": "VNet"
+    },
+    "addressPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.0.0/16"
+    },
+    "dnsName": {
+      "type": "string"
+    },
+    "nicName": {
+      "type": "string",
+      "defaultValue": "NIC"
+    },
+    "lbName": {
+      "type": "string",
+      "defaultValue": "LoadBalancer"
+    },
+    "lbIPName": {
+      "type": "string",
+      "defaultValue": "PublicIP-LB-FE"
+    },
+    "overProvision": {
+      "type": "string",
+      "defaultValue": "false"
+    },
+    "vmImagePublisher": {
+      "type": "string",
+      "defaultValue": "MicrosoftWindowsServer"
+    },
+    "vmImageOffer": {
+      "type": "string",
+      "defaultValue": "WindowsServer"
+    },
+    "vmImageSku": {
+      "type": "string",
+      "defaultValue": "2012-R2-Datacenter"
+    },
+    "vmImageVersion": {
+      "type": "string",
+      "defaultValue": "latest"
+    },
+    "clusterProtectionLevel": {
+      "type": "string",
+      "allowedValues": [
+        "None",
+        "Sign",
+        "EncryptAndSign"
+      ],
+      "defaultValue": "EncryptAndSign",
+      "metadata": {
+        "description": "Protection level.Three values are allowed - EncryptAndSign, Sign, None. It is best to keep the default of EncryptAndSign, unless you have a need not to"
+      }
+    },
+    "certificateStoreValue": {
+      "type": "string",
+      "allowedValues": [
+        "My"
+      ],
+      "defaultValue": "My",
+      "metadata": {
+        "description": "The store name where the cert will be deployed in the virtual machine"
+      }
+    },
+    "certificateThumbprint": {
+      "type": "string",
+      "metadata": {
+        "description": "Certificate Thumbprint"
+      }
+    },
+    "sourceVaultValue": {
+      "type": "string",
+      "metadata": {
+        "description": "Resource Id of the key vault, is should be in the format of /subscriptions/<Sub ID>/resourceGroups/<Resource group name>/providers/Microsoft.KeyVault/vaults/<vault name>"
+      }
+    },
+    "certificateUrlValue": {
+      "type": "string",
+      "metadata": {
+        "description": "Refers to the location URL in your key vault where the certificate was uploaded, it is should be in the format of https://<name of the vault>.vault.azure.net:443/secrets/<exact location>"
+      }
+    },
+    "storageAccountType": {
+      "type": "string",
+      "allowedValues": [
+        "Standard_LRS",
+        "Standard_GRS"
+      ],
+      "defaultValue": "Standard_LRS",
+      "metadata": {
+        "description": "Replication option for the VM image storage account"
+      }
+    },
+    "supportLogStorageAccountType": {
+      "type": "string",
+      "allowedValues": [
+        "Standard_LRS",
+        "Standard_GRS"
+      ],
+      "defaultValue": "Standard_LRS",
+      "metadata": {
+        "description": "Replication option for the support log storage account"
+      }
+    },
+    "supportLogStorageAccountName": {
+      "type": "string",
+      "defaultValue": "[toLower( concat('sflogs', uniqueString(resourceGroup().id),'2'))]",
+      "metadata": {
+        "description": "Name for the storage account that contains support logs from the cluster"
+      }
+    },
+    "applicationDiagnosticsStorageAccountType": {
+      "type": "string",
+      "allowedValues": [
+        "Standard_LRS",
+        "Standard_GRS"
+      ],
+      "defaultValue": "Standard_LRS",
+      "metadata": {
+        "description": "Replication option for the application diagnostics storage account"
+      }
+    },
+    "applicationDiagnosticsStorageAccountName": {
+      "type": "string",
+      "defaultValue": "[toLower(concat(uniqueString(resourceGroup().id), '3' ))]",
+      "metadata": {
+        "description": "Name for the storage account that contains application diagnostics data from the cluster"
+      }
+    },
+    "nt0InstanceCount": {
+      "type": "int",
+      "defaultValue": 3,
+      "metadata": {
+        "description": "Instance count for node type"
+      }
+    },
+    "vmNodeType0Name": {
+      "type": "string",
+      "defaultValue": "sftest",
+      "maxLength": 9
+    },
+    "vmNodeType0Size": {
+      "type": "string",
+      "defaultValue": "Standard_D1_v2"
+    }
+  },
+  "variables": {
+    "vmssApiVersion": "2016-03-30",
+    "lbApiVersion": "2015-06-15",
+    "vNetApiVersion": "2015-06-15",
+    "storageApiVersion": "2016-01-01",
+    "publicIPApiVersion": "2015-06-15",
+    "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',parameters('virtualNetworkName'))]",
+    "subnet0Ref": "[concat(variables('vnetID'),'/subnets/',parameters('subnet0Name'))]",
+    "lbID0": "[resourceId('Microsoft.Network/loadBalancers', concat('LB','-', parameters('clusterName'),'-',parameters('vmNodeType0Name')))]",
+    "lbIPConfig0": "[concat(variables('lbID0'),'/frontendIPConfigurations/LoadBalancerIPConfig')]",
+    "lbPoolID0": "[concat(variables('lbID0'),'/backendAddressPools/LoadBalancerBEAddressPool')]",
+    "lbProbeID0": "[concat(variables('lbID0'),'/probes/FabricGatewayProbe')]",
+    "lbHttpProbeID0": "[concat(variables('lbID0'),'/probes/FabricHttpGatewayProbe')]",
+    "lbWebAPIProbeID0": "[concat(variables('lbID0'),'/probes/FabricWebAPIProbe')]",
+    "lbNatPoolID0": "[concat(variables('lbID0'),'/inboundNatPools/LoadBalancerBEAddressNatPool')]",
+    "vmStorageAccountName0": "[toLower(concat(uniqueString(resourceGroup().id), '1', '0' ))]",
+    "uniqueStringArray0": [
+      "[concat(variables('vmStorageAccountName0'), '0')]",
+      "[concat(variables('vmStorageAccountName0'), '1')]",
+      "[concat(variables('vmStorageAccountName0'), '2')]",
+      "[concat(variables('vmStorageAccountName0'), '3')]",
+      "[concat(variables('vmStorageAccountName0'), '4')]"
+    ]
+  },
     "resources": [
         {
             "apiVersion": "[variables('storageApiVersion')]",
@@ -350,66 +355,94 @@
                         "properties": {}
                     }
                 ],
-                "loadBalancingRules": [
-                    {
-                        "name": "LBRule",
-                        "properties": {
-                            "backendAddressPool": {
-                                "id": "[variables('lbPoolID0')]"
-                            },
-                            "backendPort": "[parameters('nt0fabricTcpGatewayPort')]",
-                            "enableFloatingIP": "false",
-                            "frontendIPConfiguration": {
-                                "id": "[variables('lbIPConfig0')]"
-                            },
-                            "frontendPort": "[parameters('nt0fabricTcpGatewayPort')]",
-                            "idleTimeoutInMinutes": "5",
-                            "probe": {
-                                "id": "[variables('lbProbeID0')]"
-                            },
-                            "protocol": "tcp"
-                        }
+              "loadBalancingRules": [
+                {
+                  "name": "LBRule",
+                  "properties": {
+                    "backendAddressPool": {
+                      "id": "[variables('lbPoolID0')]"
                     },
-                    {
-                        "name": "LBHttpRule",
-                        "properties": {
-                            "backendAddressPool": {
-                                "id": "[variables('lbPoolID0')]"
-                            },
-                            "backendPort": "[parameters('nt0fabricHttpGatewayPort')]",
-                            "enableFloatingIP": "false",
-                            "frontendIPConfiguration": {
-                                "id": "[variables('lbIPConfig0')]"
-                            },
-                            "frontendPort": "[parameters('nt0fabricHttpGatewayPort')]",
-                            "idleTimeoutInMinutes": "5",
-                            "probe": {
-                                "id": "[variables('lbHttpProbeID0')]"
-                            },
-                            "protocol": "tcp"
-                        }
-                    }
-                ],
-                "probes": [
-                    {
-                        "name": "FabricGatewayProbe",
-                        "properties": {
-                            "intervalInSeconds": 5,
-                            "numberOfProbes": 2,
-                            "port": "[parameters('nt0fabricTcpGatewayPort')]",
-                            "protocol": "tcp"
-                        }
+                    "backendPort": "[parameters('nt0fabricTcpGatewayPort')]",
+                    "enableFloatingIP": "false",
+                    "frontendIPConfiguration": {
+                      "id": "[variables('lbIPConfig0')]"
                     },
-                    {
-                        "name": "FabricHttpGatewayProbe",
-                        "properties": {
-                            "intervalInSeconds": 5,
-                            "numberOfProbes": 2,
-                            "port": "[parameters('nt0fabricHttpGatewayPort')]",
-                            "protocol": "tcp"
-                        }
-                    }
-                ],
+                    "frontendPort": "[parameters('nt0fabricTcpGatewayPort')]",
+                    "idleTimeoutInMinutes": "5",
+                    "probe": {
+                      "id": "[variables('lbProbeID0')]"
+                    },
+                    "protocol": "tcp"
+                  }
+                },
+                {
+                  "name": "LBHttpRule",
+                  "properties": {
+                    "backendAddressPool": {
+                      "id": "[variables('lbPoolID0')]"
+                    },
+                    "backendPort": "[parameters('nt0fabricHttpGatewayPort')]",
+                    "enableFloatingIP": "false",
+                    "frontendIPConfiguration": {
+                      "id": "[variables('lbIPConfig0')]"
+                    },
+                    "frontendPort": "[parameters('nt0fabricHttpGatewayPort')]",
+                    "idleTimeoutInMinutes": "5",
+                    "probe": {
+                      "id": "[variables('lbHttpProbeID0')]"
+                    },
+                    "protocol": "tcp"
+                  }
+                },
+                {
+                  "name": "LBWebAPIRule",
+                  "properties": {
+                    "backendAddressPool": {
+                      "id": "[variables('lbPoolID0')]"
+                    },
+                    "backendPort": "[parameters('nt0fabricWebAPIPort')]",
+                    "enableFloatingIP": "false",
+                    "frontendIPConfiguration": {
+                      "id": "[variables('lbIPConfig0')]"
+                    },
+                    "frontendPort": "[parameters('nt0fabricWebAPIPort')]",
+                    "idleTimeoutInMinutes": "5",
+                    "probe": {
+                      "id": "[variables('lbWebAPIProbeID0')]"
+                    },
+                    "protocol": "tcp"
+                  }
+                }
+              ],
+              "probes": [
+                {
+                  "name": "FabricGatewayProbe",
+                  "properties": {
+                    "intervalInSeconds": 5,
+                    "numberOfProbes": 2,
+                    "port": "[parameters('nt0fabricTcpGatewayPort')]",
+                    "protocol": "tcp"
+                  }
+                },
+                {
+                  "name": "FabricHttpGatewayProbe",
+                  "properties": {
+                    "intervalInSeconds": 5,
+                    "numberOfProbes": 2,
+                    "port": "[parameters('nt0fabricHttpGatewayPort')]",
+                    "protocol": "tcp"
+                  }
+                },
+                {
+                  "name": "FabricWebAPIProbe",
+                  "properties": {
+                    "intervalInSeconds": 5,
+                    "numberOfProbes": 2,
+                    "port": "[parameters('nt0fabricWebAPIPort')]",
+                    "protocol": "tcp"
+                  }
+                }
+              ],
                 "inboundNatPools": [
                     {
                         "name": "LoadBalancerBEAddressNatPool",
