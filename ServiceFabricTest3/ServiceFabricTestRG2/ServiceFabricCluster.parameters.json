@@ -1,0 +1,80 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+  "parameters": {
+    "clusterName": {
+      "value": "sftestdeploy"
+    },
+    "clusterLocation": {
+      "value": "westeurope"
+    },
+    "computeLocation": {
+      "value": "westeurope"
+    },
+    "adminUserName": {
+      "value": "Test1234"
+    },
+    "adminPassword": {
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/655ab634-0e5d-40bc-8bce-abd9382fbdae/resourceGroups/sftest_keys_rg/providers/Microsoft.KeyVault/vaults/sftestkeys"
+        },
+        "secretName": "nodelogin"
+      }
+    },
+    "nicName": {
+      "value": "NIC-sftestdeploy"
+    },
+    "publicIPAddressName": {
+      "value": "sftestdeploy-PubIP"
+    },
+    "vmStorageAccountName": {
+      "value": "sfvmsftestdeploy2726"
+    },
+    "dnsName": {
+      "value": "sftestdeploy"
+    },
+    "virtualNetworkName": {
+      "value": "VNet-sftestdeploy"
+    },
+    "lbName": {
+      "value": "LB-sftestdeploy"
+    },
+    "lbIPName": {
+      "value": "LBIP-sftestdeploy"
+    },
+    "applicationDiagnosticsStorageAccountName": {
+      "value": "sfdgsftestdeploy6810"
+    },
+    "supportLogStorageAccountName": {
+      "value": "sflogssftestdeploy4743"
+    },
+    "sourceVaultValue": {
+      "value": "/subscriptions/655ab634-0e5d-40bc-8bce-abd9382fbdae/resourceGroups/sftest_keys_rg/providers/Microsoft.KeyVault/vaults/sftestkeys"
+    },
+    "certificateUrlValue": {
+      "value": "https://sftestkeys.vault.azure.net:443/secrets/sftestdeploy/3e67121a7f6443098fb31c0d094dc538"
+    },
+    "certificateThumbprint": {
+      "value": "5A75D95DFEB4EFDD79FC0D3ABB8031457DA2417B"
+    },
+    "nt0ephemeralStartPort": {
+      "value": 49152
+    },
+    "nt0ephemeralEndPort": {
+      "value": 65534
+    },
+    "nt0applicationStartPort": {
+      "value": 20000
+    },
+    "nt0applicationEndPort": {
+      "value": 30000
+    },
+    "nt0fabricTcpGatewayPort": {
+      "value": 19000
+    },
+    "nt0fabricHttpGatewayPort": {
+      "value": 19080
+    }
+  }
+}
