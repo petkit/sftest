@@ -22,7 +22,7 @@
   -->
   <ClusterConnectionParameters ConnectionEndpoint="sftestdeploy.westeurope.cloudapp.azure.com:19000" X509Credential="true" FindType="FindByThumbprint" FindValue="5A75D95DFEB4EFDD79FC0D3ABB8031457DA2417B" ServerCertThumbprint="5A75D95DFEB4EFDD79FC0D3ABB8031457DA2417B" StoreLocation="LocalMachine" StoreName="My" />
   <ApplicationParameterFile Path="..\ApplicationParameters\Cloud.xml" />
-  <UpgradeDeployment Mode="Monitored" Enabled="false">
+  <UpgradeDeployment Mode="Monitored" Enabled="true">
     <Parameters FailureAction="Rollback" Force="True" />
   </UpgradeDeployment>
 </PublishProfile>
